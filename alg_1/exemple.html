@@ -41,17 +41,25 @@
 </style>
 
 <script>
+
     function executeCode() {
         var currentValue = document.getElementById("card-1").value.toUpperCase();
-        var card = document.createElement("DIV");
-        card.className = "card";
-        var container = document.createElement("DIV");
-        container.className = "container";
-        var input = document.createElement("INPUT");
-        input.value = currentValue;
-        container.appendChild(input);
-        card.appendChild(container);
-        document.getElementById("exemple-2").appendChild(card);
+        if (document.getElementById("result")) {
+            document.getElementById("result").value = currentValue;
+        } else {
+            var card = document.createElement("DIV");
+            card.className = "card";
+            var container = document.createElement("DIV");
+            container.className = "container";
+            var input = document.createElement("INPUT");
+            input.value = currentValue;
+            input.id = "result";
+            input.readOnly = true;
+            container.appendChild(input);
+            card.appendChild(container);
+            document.getElementById("exemple-2").appendChild(card);
+        }
+
     }
 </script>
 
