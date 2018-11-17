@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<title>
+    Test
+</title>
+<style>
+    .fullPage{
+        width: 100%;
+        border: 1px solid deeppink;
+        position: fixed;
+        bottom: 0;
+        top: 0;
+        left: 0;
+    }
+    .useablePage {
+
+        padding: 100px;
+        border: 1px solid black;
+        height: 100%;
+
+    }
+    .leftContainer{
+        float: left;
+        border: 1px solid ghostwhite;
+        height: 100%;
+        width: 49%;
+        background-color: ghostwhite;
+
+    }
+    .rightContainer{
+        float: right;
+        border: 1px solid gainsboro;
+        height: 100%;
+        width: 50%;
+        background-color: gainsboro;
+    }
+</style>
+<script>
+   var path = window.location.href.substring(window.location.href.lastIndexOf('#')+1);
+   console.log(path);
+
+   function getPathForLeftContainer() {
+       switch (path) {
+           case'algoritm1':return '../Alg_1/code.html';
+           case'algoritm2':return './Alg_2/code2.html';
+           case'algoritm3':return './Alg_3/code3.html';
+           case'algoritm4':return './Alg_4/code4.html';
+           case'algoritm5':return './Alg_5/code5.html';
+       }
+   }
+   window.onload=function () {
+       console.log(getPathForLeftContainer());
+       document.getElementById("content-left").setAttribute('data',getPathForLeftContainer());
+   }
+</script>
+    <div class ="fullPage"> <!--this is how to write a comment-->
+        <div class ="useablePage">
+              <div class="leftContainer">
+                <a href="../Alg_1/index.html">Acesta este un content introdus printr-un link in zona C</a>
+                  <object width="400"  height="400"  id="content-left" ></object>
+
+              </div>
+            <div class="rightContainer">
+                <p>Acest text este introdus direct, fara redirectionare cu link<p/>
+            </div>
+        </div>
+    </div>
+</html>
