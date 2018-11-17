@@ -1,0 +1,74 @@
+<style>
+    .button {
+        float: right;
+        background-color: #4CAF50;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+    }
+
+    .card {
+        float: left;
+        width: 100px;
+        height: 100px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        transition: 0.3s;
+    }
+
+    input {
+        background-color: beige;
+        font-size: 40px;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+    }
+
+    .card:hover {
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    }
+
+    .container {
+        width: 100%;
+        height: 100%;
+        font-size: 20px;
+    }
+</style>
+
+<script>
+
+    function executeCode() {
+        var currentValue = document.getElementById("card-1").value.toUpperCase();
+        if (document.getElementById("result")) {
+            document.getElementById("result").value = currentValue;
+        } else {
+            var card = document.createElement("DIV");
+            card.className = "card";
+            var container = document.createElement("DIV");
+            container.className = "container";
+            var input = document.createElement("INPUT");
+            input.value = currentValue;
+            input.id = "result";
+            input.readOnly = true;
+            container.appendChild(input);
+            card.appendChild(container);
+            document.getElementById("exemple-2").appendChild(card);
+        }
+
+    }
+</script>
+
+<div class="exemple-1" id="exemple-2">
+    <div class="card">
+        <div class="container">
+            <input type="text" id="card-1"/>
+        </div>
+    </div>
+    <button class="button" onclick="executeCode()"> RUN</button>
+</div>
+
