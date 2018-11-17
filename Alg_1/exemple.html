@@ -28,7 +28,7 @@
         transition: 0.3s;
     }
 
-    input {
+    .input {
         background-color: beige;
         font-size: 40px;
         width: 100%;
@@ -131,6 +131,7 @@
 <script>
 
     function executeCode() {
+        console.log('card-1', document.getElementById("card-1").value.toUpperCase());
         var currentValue = document.getElementById("card-1").value.toUpperCase();
         if (document.getElementById("result")) {
             document.getElementById("result").value = currentValue;
@@ -141,6 +142,7 @@
             container.className = "container";
             var input = document.createElement("INPUT");
             input.value = currentValue;
+            input.className = 'input';
             input.id = "result";
             input.readOnly = true;
             container.appendChild(input);
@@ -156,6 +158,7 @@
         container.className = "container";
         var input = document.createElement("INPUT");
         input.id = "card-2";
+        input.className = "input";
         container.appendChild(input);
         card.appendChild(container);
         document.getElementById("exemple-2").appendChild(card);
@@ -168,21 +171,23 @@
         Date Ini&#355;iale
     </h2>
     <div class="actions">
-        <button class="button" onclick=addCard()> Adaug&#259; card </button>
-        <label class="radio-button">Liter&#259; mic&#259;
+        <button class="button" onclick="addCard()"> Adaug&#259; card </button>
+        <label class="radio-button">
+            Liter&#259; mic&#259;
             <input type="radio" checked="checked" name="radio">
             <span class="checkmark"></span>
         </label>
-        <label class="radio-button">Liter&#259; mare
+        <label class="radio-button">
+            Liter&#259; mare
             <input type="radio" name="radio">
             <span class="checkmark"></span>
         </label>
-        <button class="button" onclick="executeCode()"> Run</button>
+        <button class="button" onclick="executeCode()"> Run </button>
     </div>
 
     <div class="card">
         <div class="container">
-            <input type="text" id="card-1"/>
+            <input type="text" id="card-1" class="input"/>
         </div>
     </div>
 
