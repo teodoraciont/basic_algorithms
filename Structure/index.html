@@ -2,11 +2,19 @@
 <html>
 <title>Test</title>
 <style>
+    body {
+        font-family: "Times New Roman", Times, serif;
+    }
+
+    body {
+        overflow: scroll;
+    }
+
     .usablepage {
         height: 100%;
         border: 1px solid black;
         margin: 0 auto;
-        width: 50%;
+        padding: 20px;
     }
 
     .fullpage {
@@ -33,6 +41,42 @@
         width: 50%;
         height: 100%;
         background-color: plum;
+    }
+
+    .image {
+        width: 70%;
+        background-image: url(../utils/images/lettersf.jpeg);
+        background-position:center center;
+        height: 100%;
+        float: left;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .header {
+        height: 30%;
+    }
+
+    .algorithm {
+        height: 100%;
+        border-radius: 10px;
+        float: right;
+        background-color: #F0F0F0;
+        width: 30%;
+    }
+
+    .algorithm h2 {
+        text-align: center;
+        color: #D13C01;
+    }
+
+    .algorithm p {
+        padding: 20px;
+    }
+
+    .exemple {
+        width: 100%;
+        height: 100%;
     }
 </style>
 <script>
@@ -78,14 +122,22 @@
 
 <div class="fullpage">
     <div class="usablepage">
-        <div class="leftContainer">
-            <object width="100%" height="100%" id="content-left"></object>
+        <div class="header">
+            <div class="image"></div>
+            <div class="algorithm">
+                <object width="100%" height="100%" id="content-left"></object>
+            </div>
         </div>
-        <div class="rightContainer">
+        <div class="exemple">
             <object width="100%" height="100%" id="content-right"></object>
-
         </div>
+        <!--<div class="leftContainer">-->
+        <!--</div>-->
+        <!--<div class="rightContainer">-->
+        <!--<object width="100%" height="100%" id="content-right"></object>-->
+        <!--</div>-->
 
     </div>
+</div>
 
 </html>

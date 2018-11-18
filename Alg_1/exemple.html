@@ -1,16 +1,26 @@
 <style>
+    body {
+        margin: 0;
+    }
+
     .button {
+        border-radius: 10px;
         float: right;
-        background-color: #4CAF50;
+        background-color: #7A9FAE;
         border: none;
         color: white;
         padding: 7px 15px;
         text-align: center;
         text-decoration: none;
         display: inline-block;
-        font-size: 12px;
         margin: 4px 2px;
         cursor: pointer;
+        font-size: 20px;
+    }
+
+    .disable {
+        cursor: not-allowed;
+        background-color: #F0F0F0;
     }
 
     .response-card {
@@ -31,7 +41,6 @@
     }
 
     .input {
-        background-color: beige;
         font-size: 40px;
         width: 100%;
         height: 100%;
@@ -48,27 +57,14 @@
         font-size: 20px;
     }
 
-    .add-card {
-        background-image: url(../utils/images/Add-icon.png);
-        background-size: cover;
-        content: "";
-        display: block;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -2;
-        opacity: 0.4;
-    }
-
     /* The container */
     .radio-button {
-        display: block;
         position: relative;
         padding-left: 35px;
         margin-bottom: 12px;
         cursor: pointer;
-        font-size: 12px;
+        font-size: 20px;
+        font-weight: 100;
         -webkit-user-select: none;
         -moz-user-select: none;
         -ms-user-select: none;
@@ -100,7 +96,7 @@
 
     /* When the radio button is checked, add a blue background */
     .radio-button input:checked ~ .checkmark {
-        background-color: #2196F3;
+        background-color: #7A9FAE;
     }
 
     /* Create the indicator (the dot/circle - hidden when not checked) */
@@ -134,18 +130,38 @@
     }
 
     .initial-state {
+        padding: 2%;
         overflow: scroll;
-        height: 300px;
     }
 
     .exemple-1 {
         width: 100%;
         height: 100%;
+        margin-top: 15px;
     }
 
+    h2 {
+        color: #D13C01;
+    }
+
+    .actions {
+        background-color: #f0f0f02b;
+        display: grid;
+        grid-template-columns: 10% auto 10%;
+        text-align: center;
+    }
+
+    .results {
+        padding: 2%;
+    }
 </style>
 
 <script>
+    function disabledButton() {
+        console.log('disabledButton');
+        return document.getElementById("initial-state").childElementCount < 10;
+    }
+    ;
 
     function executeCode() {
         var radios = document.getElementsByName('radio');
@@ -184,38 +200,47 @@
 
     function addCard() {
         var count_of_divs = document.getElementById("initial-state").childElementCount;
-        var card = document.createElement("DIV");
-        card.className = "card";
-        var container = document.createElement("DIV");
-        container.className = "container";
-        var input = document.createElement("INPUT");
-        input.id = `add-card-${count_of_divs}`;
-        input.className = "input";
-        container.appendChild(input);
-        card.appendChild(container);
-        document.getElementById("initial-state").appendChild(card);
+        if (count_of_divs < 10) {
+            var card = document.createElement("DIV");
+            card.className = "card";
+            var container = document.createElement("DIV");
+            container.className = "container";
+            var input = document.createElement("INPUT");
+            input.id = `add-card-${count_of_divs}`;
+            input.className = "input";
+            container.appendChild(input);
+            card.appendChild(container);
+            document.getElementById("initial-state").appendChild(card);
+        } else {
+            const add_button = document.getElementById("add-button");
+            add_button.disabled = true;
+            add_button.classList.add("disable");
+        }
+
     }
 
 </script>
 
 <div class="exemple-1" id="exemple-2">
+    <div class="actions">
+        <button class="button" onclick="addCard()" id="add-button"> Adaug&#259; card</button>
+        <div>
+            <label class="radio-button">
+                Liter&#259; mic&#259;
+                <input type="radio" checked="checked" name="radio">
+                <span class="checkmark"></span>
+            </label>
+            <label class="radio-button">
+                Liter&#259; mare
+                <input type="radio" name="radio">
+                <span class="checkmark"></span>
+            </label>
+        </div>
+        <button class="button" onclick="executeCode()"> Run</button>
+    </div>
     <h2>
         Date Ini&#355;iale
     </h2>
-    <div class="display-flex">
-        <button class="button" onclick="addCard()"> Adaug&#259; card</button>
-        <label class="radio-button">
-            Liter&#259; mic&#259;
-            <input type="radio" checked="checked" name="radio">
-            <span class="checkmark"></span>
-        </label>
-        <label class="radio-button">
-            Liter&#259; mare
-            <input type="radio" name="radio">
-            <span class="checkmark"></span>
-        </label>
-        <button class="button" onclick="executeCode()"> Run</button>
-    </div>
     <div class="initial-state" id="initial-state">
         <div class="card">
             <div class="container">
