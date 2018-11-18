@@ -14,6 +14,7 @@
     }
 
     .response-card {
+        margin-right: 10px;
         width: 100px;
         height: 100px;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -21,6 +22,7 @@
     }
 
     .card {
+        margin-right: 10px;
         float: left;
         width: 100px;
         height: 100px;
@@ -123,45 +125,75 @@
         background: white;
     }
 
-    .actions {
+    .display-flex {
         display: flex;
     }
+
+    .final-state {
+        margin-top: 10px;
+    }
+
+    .initial-state {
+        overflow: scroll;
+        height: 300px;
+    }
+
+    .exemple-1 {
+        width: 100%;
+        height: 100%;
+    }
+
 </style>
 
 <script>
 
     function executeCode() {
-        console.log('card-1', document.getElementById("card-1").value.toUpperCase());
-        var currentValue = document.getElementById("card-1").value.toUpperCase();
-        if (document.getElementById("result")) {
-            document.getElementById("result").value = currentValue;
-        } else {
-            var card = document.createElement("DIV");
-            card.className = "response-card";
-            var container = document.createElement("DIV");
-            container.className = "container";
-            var input = document.createElement("INPUT");
-            input.value = currentValue;
-            input.className = 'input';
-            input.id = "result";
-            input.readOnly = true;
-            container.appendChild(input);
-            card.appendChild(container);
-            document.getElementById("exemple-2").appendChild(card);
+        var radios = document.getElementsByName('radio');
+        var who_is_checked = radios[0].checked ? 'small_letters' : 'big_letters';
+        var currentValue;
+        for (var index = 0; index < document.getElementById("initial-state").childElementCount; index++) {
+            if (who_is_checked === 'big_letters') {
+                currentValue = document.getElementById(`add-card-${index}`).value.toUpperCase();
+            } else {
+                currentValue = document.getElementById(`add-card-${index}`).value.toLowerCase();
+            }
+            if (document.getElementById(`result-card-${index}`)) {
+                document.getElementById(`result-card-${index}`).value = currentValue;
+            } else {
+                if (!document.getElementById(`final_state_h2`)) {
+                    var h2 = document.createElement("h2");
+                    h2.innerHTML = "Date finale";
+                    h2.id = "final_state_h2";
+                    document.getElementById("h2").appendChild(h2);
+                }
+                var card = document.createElement("DIV");
+                card.className = "response-card";
+                var container = document.createElement("DIV");
+                container.className = "container";
+                var input = document.createElement("INPUT");
+                input.value = currentValue;
+                input.className = 'input';
+                input.id = `result-card-${index}`;
+                input.readOnly = true;
+                container.appendChild(input);
+                card.appendChild(container);
+                document.getElementById("results").appendChild(card);
+            }
         }
     }
 
     function addCard() {
+        var count_of_divs = document.getElementById("initial-state").childElementCount;
         var card = document.createElement("DIV");
         card.className = "card";
         var container = document.createElement("DIV");
         container.className = "container";
         var input = document.createElement("INPUT");
-        input.id = "card-2";
+        input.id = `add-card-${count_of_divs}`;
         input.className = "input";
         container.appendChild(input);
         card.appendChild(container);
-        document.getElementById("exemple-2").appendChild(card);
+        document.getElementById("initial-state").appendChild(card);
     }
 
 </script>
@@ -170,8 +202,8 @@
     <h2>
         Date Ini&#355;iale
     </h2>
-    <div class="actions">
-        <button class="button" onclick="addCard()"> Adaug&#259; card </button>
+    <div class="display-flex">
+        <button class="button" onclick="addCard()"> Adaug&#259; card</button>
         <label class="radio-button">
             Liter&#259; mic&#259;
             <input type="radio" checked="checked" name="radio">
@@ -182,13 +214,19 @@
             <input type="radio" name="radio">
             <span class="checkmark"></span>
         </label>
-        <button class="button" onclick="executeCode()"> Run </button>
+        <button class="button" onclick="executeCode()"> Run</button>
+    </div>
+    <div class="initial-state" id="initial-state">
+        <div class="card">
+            <div class="container">
+                <input type="text" id="add-card-0" class="input"/>
+            </div>
+        </div>
     </div>
 
-    <div class="card">
-        <div class="container">
-            <input type="text" id="card-1" class="input"/>
-        </div>
+    <div class="final-state" id="final-state">
+        <div id="h2"></div>
+        <div id="results" class="results display-flex"></div>
     </div>
 
 </div>
